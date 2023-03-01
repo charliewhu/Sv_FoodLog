@@ -24,7 +24,7 @@ test('create food item', async ({ page }) => {
 
 	// Then I will see the name food I created in the list
 	const newFood = page.getByTestId('foodListItem').first();
-	expect(newFood.textContent()).toEqual(foodItem.name);
+	expect(await newFood.innerText()).toEqual(foodItem.name);
 
 	// And I will see the macronutrient values
 });
