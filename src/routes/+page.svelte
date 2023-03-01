@@ -7,7 +7,7 @@
 </script>
 
 <div class="grid">
-	<ul>
+	{#if foods.length !== 0}
 		<table data-testId="foodList">
 			<thead>
 				<tr>
@@ -30,7 +30,9 @@
 				{/each}
 			</tbody>
 		</table>
-	</ul>
+	{:else}
+		<p>You haven't logged any food today</p>
+	{/if}
 	<form method="POST" use:enhance>
 		<div class="grid">
 			<input type="text" name="name" placeholder="Name" />
