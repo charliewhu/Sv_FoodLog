@@ -7,48 +7,49 @@
 </script>
 
 <div class="grid">
-	{#if foods.length !== 0}
-		<table data-testId="foodList">
-			<thead>
-				<tr>
-					<th scope="col">Food</th>
-					<th scope="col">Calories</th>
-					<th scope="col">Protein</th>
-					<th scope="col">Carb</th>
-					<th scope="col">Fat</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#each foods as food}
-					<tr data-testId="foodListItem">
-						<td>{food.name}</td>
-						<td>{food.calories}</td>
-						<td>{food.protein}</td>
-						<td>{food.carb}</td>
-						<td>{food.fat}</td>
-						<td>
+	<article>
+		{#if foods.length !== 0}
+			<h5>Your Foods</h5>
+			{#each foods as food}
+				<div data-testId="foodList">
+					<div data-testId="foodListItem" class="grid list-item">
+						<div>{food.name}</div>
+						<div>{food.calories}</div>
+						<div>{food.protein}</div>
+						<div>{food.carb}</div>
+						<div>{food.fat}</div>
+						<div>
 							<form method="POST" action="?/deleteFood" use:enhance>
 								<input type="hidden" name="id" value={food.id} />
-								<button type="submit" aria-label="deleteFoodItem"> Delete </button>
+								<button type="submit" aria-label="deleteFoodItem"> X </button>
 							</form>
-						</td>
-					</tr>
-				{/each}
-			</tbody>
-		</table>
-	{:else}
-		<p>You haven't logged any food today</p>
-	{/if}
-	<form method="POST" action="?/createFood" use:enhance>
-		<div class="grid">
-			<input type="text" name="name" placeholder="Name" />
-			<input type="number" name="calories" placeholder="Calories" />
-		</div>
-		<div class="grid">
-			<input type="number" name="protein" placeholder="Protein" />
-			<input type="number" name="carb" placeholder="Carb" />
-			<input type="number" name="fat" placeholder="Fat" />
-		</div>
-		<button type="submit" aria-label="addFoodItem"> Add </button>
-	</form>
+						</div>
+					</div>
+				</div>
+			{/each}
+		{:else}
+			<p>You haven't logged any food today</p>
+		{/if}
+	</article>
+
+	<article>
+		<form method="POST" action="?/createFood" use:enhance>
+			<div class="grid">
+				<input type="text" name="name" placeholder="Name" />
+				<input type="number" name="calories" placeholder="Calories" />
+			</div>
+			<div class="grid">
+				<input type="number" name="protein" placeholder="Protein" />
+				<input type="number" name="carb" placeholder="Carb" />
+				<input type="number" name="fat" placeholder="Fat" />
+			</div>
+			<button type="submit" aria-label="addFoodItem"> Add </button>
+		</form>
+	</article>
 </div>
+
+<style>
+	.list-item {
+		align-items: center;
+	}
+</style>
