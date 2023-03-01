@@ -20,7 +20,7 @@ test('create food item', async ({ page }) => {
 	await page.getByPlaceholder('Calories').fill(foodItem.calories);
 
 	// And click the submit button
-	await page.locator('button[type="submit"]').click();
+	await page.locator('button[aria-label="addFoodItem"]').click();
 
 	// Then I will see the name food I created in the list
 	const newFood = page.getByTestId('foodListItem').first();
