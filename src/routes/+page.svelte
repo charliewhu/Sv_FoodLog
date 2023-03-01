@@ -7,11 +7,28 @@
 
 <div class="grid">
 	<ul>
-		{#each foods as food}
-			<li data-testid="foodListItem">
-				{food.name}
-			</li>
-		{/each}
+		<table>
+			<thead>
+				<tr>
+					<th scope="col">Food</th>
+					<th scope="col">Calories</th>
+					<th scope="col">Protein</th>
+					<th scope="col">Carb</th>
+					<th scope="col">Fat</th>
+				</tr>
+			</thead>
+			<tbody>
+				{#each foods as food}
+					<tr data-testId="foodListItem">
+						<td>{food.name}</td>
+						<td>{food.calories}</td>
+						<td>{food.protein}</td>
+						<td>{food.carb}</td>
+						<td>{food.fat}</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
 	</ul>
 	<form method="POST">
 		<div class="grid">
