@@ -1,6 +1,9 @@
 import { test, expect } from './base.ts';
+import { prisma } from '../src/lib/server/prisma.ts';
 
 test('create food item', async ({ page }) => {
+	await prisma.food.deleteMany();
+
 	// Given I am on the homepage
 	await page.goto('/');
 
