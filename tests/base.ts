@@ -8,8 +8,8 @@ export const test = base.extend({
 		// 	(window as any).Playwright = true;
 		// });
 
-		console.log('Running');
 		await page.goto('/');
+		console.log('Running');
 
 		await use(page);
 	}
