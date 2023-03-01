@@ -13,12 +13,11 @@ test('create food item', async ({ page }) => {
 		calories: '145'
 	};
 
-	await page.getByPlaceholder('name').fill(foodItem.name);
-	await page.getByPlaceholder('protein').fill(foodItem.protein);
-	await page.getByPlaceholder('carb').fill(foodItem.carb);
-	await page.getByPlaceholder('carb').fill(foodItem.carb);
-	await page.getByPlaceholder('fat').fill(foodItem.fat);
-	await page.getByPlaceholder('calories').fill(foodItem.calories);
+	await page.getByPlaceholder('Name').fill(foodItem.name);
+	await page.getByPlaceholder('Protein').fill(foodItem.protein);
+	await page.getByPlaceholder('Carb').fill(foodItem.carb);
+	await page.getByPlaceholder('Fat').fill(foodItem.fat);
+	await page.getByPlaceholder('Calories').fill(foodItem.calories);
 
 	// And click the submit button
 	await page.locator('button[type="submit"]').click();
