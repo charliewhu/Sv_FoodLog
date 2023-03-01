@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -30,7 +31,7 @@
 			</tbody>
 		</table>
 	</ul>
-	<form method="POST">
+	<form method="POST" use:enhance>
 		<div class="grid">
 			<input type="text" name="name" placeholder="Name" />
 			<input type="number" name="calories" placeholder="Calories" />
