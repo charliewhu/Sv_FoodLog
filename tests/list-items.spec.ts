@@ -5,19 +5,23 @@ test('list items', async ({ page }) => {
 	// Given some logged foods today
 	await prisma.food.create({
 		data: {
+			date: Date.now(),
 			name: 'Egg',
 			protein: 7,
 			carb: 2,
-			fat: 7
+			fat: 7,
+			calories: 70
 		}
 	});
 
 	await prisma.food.create({
 		data: {
+			date: Date.now(),
 			name: 'Bread',
 			protein: 4,
 			carb: 15,
-			fat: 1
+			fat: 1,
+			calories: 100
 		}
 	});
 
