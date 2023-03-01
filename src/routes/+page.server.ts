@@ -12,7 +12,7 @@ export const load: PageServerLoad = async () => {
 };
 
 export const actions: Actions = {
-	default: async ({ request }) => {
+	createFood: async ({ request }) => {
 		const form = await request.formData();
 		const food = Object.fromEntries(form);
 

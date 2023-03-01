@@ -26,6 +26,11 @@
 						<td>{food.protein}</td>
 						<td>{food.carb}</td>
 						<td>{food.fat}</td>
+						<td>
+							<form>
+								<button type="submit" aria-label="deleteFoodItem"> Delete </button>
+							</form>
+						</td>
 					</tr>
 				{/each}
 			</tbody>
@@ -33,7 +38,7 @@
 	{:else}
 		<p>You haven't logged any food today</p>
 	{/if}
-	<form method="POST" use:enhance>
+	<form method="POST" action="?/createFood" use:enhance>
 		<div class="grid">
 			<input type="text" name="name" placeholder="Name" />
 			<input type="number" name="calories" placeholder="Calories" />
