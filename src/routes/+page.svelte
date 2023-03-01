@@ -43,6 +43,6 @@
 			<input type="number" name="carb" placeholder="Carb" />
 			<input type="number" name="fat" placeholder="Fat" />
 		</div>
-		<button type="submit"> Add </button>
+		<button type="submit" aria-label="addFoodItem"> Add </button>
 	</form>
 </div>
