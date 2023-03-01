@@ -1,5 +1,4 @@
 import { test, expect } from './base.ts';
-import { prisma } from '../src/lib/server/prisma.ts';
 
 test('create food item', async ({ page }) => {
 	// Given I am on the homepage
