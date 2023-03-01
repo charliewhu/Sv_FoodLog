@@ -19,6 +19,11 @@
 						<div>{food.carb}</div>
 						<div>{food.fat}</div>
 						<div>
+							<a href={`/${food.id}/update`}
+								><button type="button" aria-label="updateFoodItem"> Update</button>
+							</a>
+						</div>
+						<div>
 							<form method="POST" action="?/deleteFood" use:enhance>
 								<input type="hidden" name="id" value={food.id} />
 								<button type="submit" aria-label="deleteFoodItem"> X </button>
