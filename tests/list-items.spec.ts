@@ -2,6 +2,13 @@ import { test, expect } from './base.ts';
 import { prisma } from '../src/lib/server/prisma.ts';
 
 test('list items', async ({ page }) => {
+	// Given there arent any items
+	// When I navigate to the homepage
+	await page.goto('/');
+
+	// Then the list should not be visible
+	await expect(page.getByTestId('foodList')).not.toBeVisible();
+
 	// Given some logged foods today
 	await prisma.food.create({
 		data: {

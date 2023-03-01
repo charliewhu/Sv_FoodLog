@@ -8,7 +8,7 @@
 
 <div class="grid">
 	<ul>
-		<table>
+		<table data-testId="foodList">
 			<thead>
 				<tr>
 					<th scope="col">Food</th>
