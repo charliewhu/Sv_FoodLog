@@ -5,7 +5,10 @@ const config: PlaywrightTestConfig = {
 		command: 'pnpm dev --port 7357',
 		port: 7357
 	},
-	testDir: 'tests'
+	testDir: 'tests',
+
+	/* Opt out of parallel tests*/
+	workers: 1
 };
 
 export default config;
