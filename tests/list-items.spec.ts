@@ -29,10 +29,11 @@ test('list items', async ({ page }) => {
 	page.goto('/');
 
 	// Then I will see today's foods
-	const foodCount = prisma.food.count();
+	const foodCount = await prisma.food.count();
 	const pageFoods = page.getByTestId('foodListItem');
 	await expect(pageFoods).toHaveCount(foodCount);
 
-	const firstFood = await prisma.food.first();
-	await expect(page.getByText(firstFood)).toBeVisible();
+	const firstFood = await prisma.food.findFirst();
+	const firstFoodName = firstFood?.name;
+	await expect(page.getByText(firstFoodName)).toBeVisible();
 });
