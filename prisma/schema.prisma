@@ -11,8 +11,8 @@ datasource db {
 }
 
 model Food {
-  id       Int    @id @default(autoincrement())
-  date     BigInt
+  id       Int      @id @default(autoincrement())
+  date     DateTime
   name     String
   protein  Int
   carb     Int
