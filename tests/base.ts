@@ -2,14 +2,12 @@ import { test as base } from '@playwright/test';
 
 export const test = base.extend({
 	page: async ({ page }, use) => {
-		// We have a few cases where we need our app to know it's running in Playwright.
-		// This is inspired by Cypress that auto-injects window.Cypress.
-		// await page.addInitScript(() => {
-		// 	(window as any).Playwright = true;
-		// });
+		// enable console log outputs to be visible
+		page.on('console', (msg) => {
+			console.log(msg);
+		});
 
-		await page.goto('/');
-		console.log('Running');
+		console.log('Test Suite running...');
 
 		await use(page);
 	}
