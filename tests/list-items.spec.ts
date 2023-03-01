@@ -26,7 +26,7 @@ test('list items', async ({ page }) => {
 	});
 
 	// When I navigate to the homepage
-	page.goto('/');
+	await page.goto('/');
 
 	// Then I will see today's foods
 	const foodCount = await prisma.food.count();
