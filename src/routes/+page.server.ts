@@ -1,6 +1,6 @@
 import type { PageServerLoad } from './$types';
 import { prisma } from '$lib/server/prisma';
-import type { Actions } from '@sveltejs/kit';
+import { redirect, type Actions } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async () => {
 	//const now = new Date();
@@ -26,5 +26,17 @@ export const actions: Actions = {
 				date: new Date()
 			}
 		});
+
+		throw redirect(302, '/');
+	},
+	deleteFood: async ({ request }) => {
+		const form = await request.formData();
+		const id = form.get('id');
+
+		await prisma.food.delete({
+			where: { id: Number(id) }
+		});
+
+		throw redirect(302, '/');
 	}
 };

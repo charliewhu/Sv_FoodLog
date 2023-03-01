@@ -28,6 +28,7 @@
 						<td>{food.fat}</td>
 						<td>
 							<form method="POST" action="?/deleteFood" use:enhance>
+								<input type="hidden" name="id" value={food.id} />
 								<button type="submit" aria-label="deleteFoodItem"> Delete </button>
 							</form>
 						</td>
