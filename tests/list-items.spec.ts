@@ -9,6 +9,9 @@ test('list items', async ({ page }) => {
 	// Then the list should not be visible
 	await expect(page.getByTestId('foodList')).not.toBeVisible();
 
+	// And a message should be shown
+	await expect(page.getByText('You havent logged any food today')).toBeVisible();
+
 	// Given some logged foods today
 	await prisma.food.create({
 		data: {
