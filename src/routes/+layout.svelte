@@ -1,4 +1,4 @@
-<nav class="container-fluid">
+<nav class="container">
 	<ul>
 		<li>
 			<a class="contrast" href="/"><strong>Page</strong></a>
