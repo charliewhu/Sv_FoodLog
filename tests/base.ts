@@ -1,4 +1,5 @@
 import { test as base } from '@playwright/test';
+import { prisma } from '../src/lib/server/prisma.ts';
 
 export const test = base.extend({
 	page: async ({ page }, use) => {
@@ -6,6 +7,10 @@ export const test = base.extend({
 		page.on('console', (msg) => {
 			console.log(msg);
 		});
+
+		// clear all existing records
+		await prisma.food.deleteMany();
+		console.log('Old food items cleared from db');
 
 		console.log('Test Suite running...');
 
