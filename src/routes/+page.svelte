@@ -27,7 +27,7 @@
 						<td>{food.carb}</td>
 						<td>{food.fat}</td>
 						<td>
-							<form>
+							<form method="POST" action="?/deleteFood" use:enhance>
 								<button type="submit" aria-label="deleteFoodItem"> Delete </button>
 							</form>
 						</td>
