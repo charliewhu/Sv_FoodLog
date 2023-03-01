@@ -18,4 +18,7 @@
 
 <style global>
 	@import '@picocss/pico';
+	nav {
+		padding-bottom: 30px;
+	}
 </style>
