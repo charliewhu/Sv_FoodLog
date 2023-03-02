@@ -2,11 +2,13 @@
 	import type { Food } from '@prisma/client';
 
 	export let food: Food;
+
+	const actionUrl = food ? '' : '?/createFood';
 </script>
 
 <article data-testId="foodForm" class="foodForm">
 	<div>
-		<form method="POST" action="?/createFood">
+		<form method="POST" action={actionUrl}>
 			<div class="grid">
 				<input type="text" name="name" placeholder="Name" value={food?.name} />
 				<input type="number" name="calories" placeholder="Calories" value={food?.calories} />
