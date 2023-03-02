@@ -1,5 +1,5 @@
 import { prisma } from '$lib/server/prisma';
-import { redirect, type Actions, fail } from '@sveltejs/kit';
+import { type Actions, fail } from '@sveltejs/kit';
 
 export const actions: Actions = {
 	createFood: async ({ request }) => {
@@ -21,7 +21,7 @@ export const actions: Actions = {
 			return fail(500, { message: 'could not create food' });
 		}
 
-		throw redirect(302, '/');
+		return { status: 201 };
 	},
 	deleteFood: async ({ request }) => {
 		const form = await request.formData();
@@ -31,6 +31,6 @@ export const actions: Actions = {
 			where: { id: Number(id) }
 		});
 
-		throw redirect(302, '/');
+		return { status: 204 };
 	}
 };
