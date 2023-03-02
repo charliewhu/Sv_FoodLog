@@ -32,8 +32,8 @@
 								<div>{food.carb}</div>
 								<div>{food.fat}</div>
 								<div>
-									<a href={`/${food.id}/update`}
-										><button type="button" aria-label="updateFoodItem"> Edit </button>
+									<a href={`/${food.id}/update`}>
+										<button type="button" aria-label="updateFoodItem"> Edit </button>
 									</a>
 								</div>
 								<div>
