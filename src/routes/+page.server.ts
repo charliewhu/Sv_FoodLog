@@ -1,15 +1,5 @@
-import type { PageServerLoad } from './$types';
 import { prisma } from '$lib/server/prisma';
 import { redirect, type Actions } from '@sveltejs/kit';
-
-export const load: PageServerLoad = async () => {
-	//const now = new Date();
-
-	// TODO: needs to be filtered for today only
-	const foods = await prisma.food.findMany();
-
-	return { foods };
-};
 
 export const actions: Actions = {
 	createFood: async ({ request }) => {
