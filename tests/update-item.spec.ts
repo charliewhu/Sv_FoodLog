@@ -31,11 +31,19 @@ test('update food item', async ({ page }) => {
 	await expect(page).toHaveURL(`/${food?.id}/update`);
 
 	/// And I will see the item in the form
-	const form = page.getByRole('form');
-	const formText = await form.allInnerTexts();
-	expect(formText).toContain(foodData.name);
-	expect(formText).toContain(foodData.calories);
-	expect(formText).toContain(foodData.protein);
-	expect(formText).toContain(foodData.carb);
-	expect(formText).toContain(foodData.fat);
+	await expect(page.getByPlaceholder('Name')).toHaveValue(foodData.name);
+	await expect(page.getByPlaceholder('Calories')).toHaveValue(String(foodData.calories));
+	await expect(page.getByPlaceholder('Protein')).toHaveValue(String(foodData.protein));
+	await expect(page.getByPlaceholder('Carb')).toHaveValue(String(foodData.carb));
+	await expect(page.getByPlaceholder('Fat')).toHaveValue(String(foodData.fat));
+
+	// When I add the new details to the form
+	const newName = 'new food name';
+	await page.getByPlaceholder('Name').fill(newName);
+
+	// And I click the update button
+	await page.locator('button[aria-label="submitUpdateFoodItem"]').click();
+
+	// Then I will be on the main screen
+	// And the new details will be displayed
 });
