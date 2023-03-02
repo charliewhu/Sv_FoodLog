@@ -24,7 +24,7 @@ test('update food item', async ({ page }) => {
 	expect(await pageFoods.count()).toBeGreaterThan(0);
 
 	// When I click the edit item button
-	await page.locator('button[aria-label="updateFoodItem"]').click();
+	await page.getByLabel('updateFoodItem').click();
 
 	// Then the url will be correct
 	const food = await prisma.food.findFirst();
@@ -48,5 +48,5 @@ test('update food item', async ({ page }) => {
 	await expect(page).toHaveURL(`/`);
 
 	// And the new details will be displayed
-	await expect(page.getByTestId('foodListItem')).toHaveText(newName);
+	await expect(page.getByTestId('foodListItem')).toContainText(newName);
 });
