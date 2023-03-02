@@ -45,5 +45,8 @@ test('update food item', async ({ page }) => {
 	await page.locator('button[aria-label="submitUpdateFoodItem"]').click();
 
 	// Then I will be on the main screen
+	await expect(page).toHaveURL(`/`);
+
 	// And the new details will be displayed
+	await expect(page.getByTestId('foodListItem')).toHaveText(newName);
 });
