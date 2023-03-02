@@ -28,7 +28,7 @@ test('update food item', async ({ page }) => {
 
 	// Then the url will be correct
 	const food = await prisma.food.findFirst();
-	expect(page.url()).toContain(`/${food?.id}/update`);
+	await expect(page).toHaveURL(`/${food?.id}/update`);
 
 	/// And I will see the item in the form
 	const form = page.getByRole('form');
