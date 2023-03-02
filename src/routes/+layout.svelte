@@ -1,3 +1,10 @@
+<script lang="ts">
+	import type { LayoutData } from './$types';
+
+	export let data: LayoutData;
+	$: foods = data.foods;
+</script>
+
 <nav class="container">
 	<ul>
 		<li>
@@ -12,7 +19,33 @@
 
 <main>
 	<section class="container">
-		<slot />
+		<div class="grid">
+			<article>
+				{#if foods.length !== 0}
+					<h5>Your Foods</h5>
+					{#each foods as food}
+						<div data-testId="foodList">
+							<div data-testId="foodListItem" class="grid list-item">
+								<div>{food.name}</div>
+								<div>{food.calories}</div>
+								<div>{food.protein}</div>
+								<div>{food.carb}</div>
+								<div>{food.fat}</div>
+								<a href={`/${food.id}/update`} role="button" aria-label="updateFoodItem"> Edit </a>
+								<form method="POST" action="?/deleteFood">
+									<input type="hidden" name="id" value={food.id} />
+									<button type="submit" aria-label="deleteFoodItem"> X </button>
+								</form>
+							</div>
+						</div>
+					{/each}
+				{:else}
+					<p>You haven't logged any food today</p>
+				{/if}
+			</article>
+
+			<slot />
+		</div>
 	</section>
 </main>
 
