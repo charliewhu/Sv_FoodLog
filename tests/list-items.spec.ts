@@ -2,7 +2,14 @@ import { test, expect } from './base.ts';
 import { prisma } from '../src/lib/server/prisma.ts';
 
 test('list items', async ({ page }) => {
+	const today = new Date();
 	const yesterday = new Date();
+	yesterday.setDate(yesterday.getDate() - 1);
+
+	const startDate = new Date();
+	startDate.setUTCHours(0, 0, 0, 0);
+	const endDate = new Date();
+	endDate.setUTCHours(23, 59, 59, 999);
 
 	// Given there arent any items
 	// When I navigate to the homepage
@@ -17,7 +24,7 @@ test('list items', async ({ page }) => {
 	// Given some logged foods today
 	await prisma.food.create({
 		data: {
-			date: new Date(),
+			date: today,
 			name: 'Egg',
 			protein: 7,
 			carb: 2,
@@ -28,7 +35,7 @@ test('list items', async ({ page }) => {
 
 	await prisma.food.create({
 		data: {
-			date: new Date(),
+			date: today,
 			name: 'Bread',
 			protein: 4,
 			carb: 15,
@@ -39,7 +46,7 @@ test('list items', async ({ page }) => {
 
 	await prisma.food.create({
 		data: {
-			date: new Date(yesterday.setDate(yesterday.getDate() - 1)),
+			date: new Date(yesterday),
 			name: 'Bread',
 			protein: 4,
 			carb: 15,
@@ -53,11 +60,15 @@ test('list items', async ({ page }) => {
 
 	// Then I will see today's foods
 	// And not yesterdays foods
-	const foodCount = await prisma.food
-		.findMany({
-			where: {}
-		})
-		.count();
+	const foods = await prisma.food.findMany({
+		where: {
+			date: {
+				gte: startDate,
+				lte: endDate
+			}
+		}
+	});
+	const foodCount = foods.length;
 	const pageFoods = page.getByTestId('foodListItem');
 	await expect(pageFoods).toHaveCount(foodCount);
 
