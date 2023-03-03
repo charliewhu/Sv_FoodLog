@@ -59,7 +59,10 @@ test('list items', async ({ page }) => {
 	// When I navigate to the homepage
 	await page.goto('/');
 
-	// Then I will see today's foods
+	// Then I will see todays date
+	await expect(page.getByText(today.toDateString())).toBeVisible();
+
+	// And I will see today's foods
 	// And not yesterdays foods
 	const foods = await prisma.food.findMany({
 		where: {
@@ -80,7 +83,10 @@ test('list items', async ({ page }) => {
 	// When I navigate back to yesterday
 	await page.getByTestId('prevDay').click();
 
-	// Then I will see yesterdays food item in the list
+	// Then I will see yesterdays date
+	await expect(page.getByText(yesterday.toDateString())).toBeVisible();
+
+	// And I will see yesterdays food item in the list
 	const lastFood = await prisma.food.findMany({
 		where: {
 			date: yDate
