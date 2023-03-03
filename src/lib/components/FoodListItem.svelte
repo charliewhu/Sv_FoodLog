@@ -18,5 +18,12 @@
 </div>
 
 <style>
-	/* your styles go here */
+	.list-item {
+		background-color: var(--background-color);
+		border-radius: var(--border-radius);
+		box-shadow: var(--card-box-shadow);
+		align-items: center;
+		padding: 1em;
+		margin: 1em;
+	}
 </style>
