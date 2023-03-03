@@ -2,6 +2,8 @@ import { test, expect } from './base.ts';
 import { prisma } from '../src/lib/server/prisma.ts';
 
 test('list items', async ({ page }) => {
+	const yesterday = new Date();
+
 	// Given there arent any items
 	// When I navigate to the homepage
 	await page.goto('/');
@@ -35,11 +37,27 @@ test('list items', async ({ page }) => {
 		}
 	});
 
+	await prisma.food.create({
+		data: {
+			date: new Date(yesterday.setDate(yesterday.getDate() - 1)),
+			name: 'Bread',
+			protein: 4,
+			carb: 15,
+			fat: 1,
+			calories: 100
+		}
+	});
+
 	// When I navigate to the homepage
 	await page.goto('/');
 
 	// Then I will see today's foods
-	const foodCount = await prisma.food.count();
+	// And not yesterdays foods
+	const foodCount = await prisma.food
+		.findMany({
+			where: {}
+		})
+		.count();
 	const pageFoods = page.getByTestId('foodListItem');
 	await expect(pageFoods).toHaveCount(foodCount);
 
