@@ -4,6 +4,8 @@
 
 	export let data: LayoutData;
 	$: foods = data.foods;
+
+	let date = new Date();
 </script>
 
 <nav class="container">
@@ -22,6 +24,7 @@
 	<section class="container">
 		<div class="grid">
 			<article>
+				<h6>{date.toDateString()}</h6>
 				{#if foods.length !== 0}
 					<h5>Your Foods</h5>
 					<div data-testId="foodList">
