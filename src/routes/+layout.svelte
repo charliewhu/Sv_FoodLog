@@ -1,11 +1,16 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import FoodListItem from '$lib/components/FoodListItem.svelte';
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
 	$: foods = data.foods;
 
-	let date = new Date();
+	const params = $page.url.searchParams.get('date');
+	const date = params ? new Date(params) : new Date();
+
+	const prevDay = new Date(date.getTime() - 24 * 60 * 60 * 1000);
+	const nextDay = new Date(date.getTime() + 24 * 60 * 60 * 1000);
 </script>
 
 <nav class="container">
@@ -23,9 +28,9 @@
 <main>
 	<section class="container">
 		<article class="flex">
-			<a data-testId="prevDay" href={`/?date=${date.setDate(date.getDate() - 1)}`}>{`<-`}</a>
+			<a data-testId="prevDay" href={`/?date=${prevDay.toDateString()}`}>{`<-`}</a>
 			<p>{date.toDateString()}</p>
-			<a>{`->`}</a>
+			<a data-testId="nextDay" href={`/?date=${nextDay.toDateString()}`}>{`->`}</a>
 		</article>
 		<div class="grid">
 			<article>
