@@ -2,4 +2,4 @@
 	import FoodForm from '$lib/components/FoodForm.svelte';
 </script>
 
-<FoodForm />
+<FoodForm food={null} />
