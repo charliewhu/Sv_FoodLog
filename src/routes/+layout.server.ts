@@ -1,7 +1,7 @@
-import type { PageServerLoad } from './$types';
+import type { LayoutServerLoad } from './$types';
 import { prisma } from '$lib/server/prisma';
 
-export const load: PageServerLoad = async ({ url }) => {
+export const load: LayoutServerLoad = async ({ url }) => {
 	const date = url.searchParams.get('date') || new Date();
 
 	const startDate = new Date(date);
@@ -19,5 +19,5 @@ export const load: PageServerLoad = async ({ url }) => {
 		}
 	});
 
-	return { foods };
+	return { foods: foods, date: date };
 };

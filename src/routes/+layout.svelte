@@ -1,16 +1,12 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import FoodListItem from '$lib/components/FoodListItem.svelte';
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
 	$: foods = data.foods;
-
-	const params = $page.url.searchParams.get('date');
-	const date = params ? new Date(params) : new Date();
-
-	const prevDay = new Date(date.getTime() - 24 * 60 * 60 * 1000);
-	const nextDay = new Date(date.getTime() + 24 * 60 * 60 * 1000);
+	$: date = new Date(data.date) || new Date();
+	$: prevDay = new Date(date.getTime() - 24 * 60 * 60 * 1000);
+	$: nextDay = new Date(date.getTime() + 24 * 60 * 60 * 1000);
 </script>
 
 <nav class="container">
