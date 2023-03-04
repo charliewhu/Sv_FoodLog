@@ -22,9 +22,13 @@
 
 <main>
 	<section class="container">
+		<article class="flex">
+			<a data-testId="prevDay" href={`/?date=${date.setDate(date.getDate() - 1)}`}>{`<-`}</a>
+			<p>{date.toDateString()}</p>
+			<a>{`->`}</a>
+		</article>
 		<div class="grid">
 			<article>
-				<h6>{date.toDateString()}</h6>
 				{#if foods.length !== 0}
 					<h5>Your Foods</h5>
 					<div data-testId="foodList">
@@ -36,7 +40,6 @@
 					<p>You haven't logged any food today</p>
 				{/if}
 			</article>
-
 			<slot />
 		</div>
 	</section>
@@ -46,5 +49,14 @@
 	@import '@picocss/pico';
 	nav {
 		padding-bottom: 30px;
+	}
+	.flex {
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		margin-top: 0;
+		margin-bottom: 0;
 	}
 </style>
